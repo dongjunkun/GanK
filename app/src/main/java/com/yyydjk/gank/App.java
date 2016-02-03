@@ -12,15 +12,17 @@ import com.orhanobut.logger.Logger;
 public class App extends Application {
 
     private static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+
         Logger.init("hhh")
                 .methodOffset(2)
                 .methodCount(2)
                 .hideThreadInfo()
-                .logLevel(LogLevel.FULL);
+                .logLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
     }
 
     public static Context getContext() {

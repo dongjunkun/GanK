@@ -1,4 +1,4 @@
-package com.yyydjk.gank.http;
+package com.yyydjk.gank.db;
 
 import android.content.ContentValues;
 import android.database.Cursor;
