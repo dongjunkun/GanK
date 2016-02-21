@@ -1,6 +1,22 @@
 <resources>
-    <string name="app_name">GanK</string>
+    <string name="app_name">干货集中营</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="theme">主题</string>
+    <string name="cancel">取消</string>
+    <string name="done">完成</string>
+    <string name="about_me">\n简 书：<a href="http://www.jianshu.com/users/f07458c1a8f3/top_articles">dongjunkun</a>\n\nGithub：<a href="https://github.com/dongjunkun">dongjunkun</a></string>
+    <string name="all">全部</string>
+    <string name="close">关闭</string>
+    <string name="setting">设置</string>
+    <string name="fuli">福利</string>
+    <string name="android">Android</string>
+    <string name="ios">iOS</string>
+    <string name="video">休息视频</string>
+    <string name="front">前端</string>
+    <string name="resource">拓展资源</string>
+    <string name="app">App</string>
+    <string name="about">关于我</string>
+    <string name="more">瞎推荐</string>
 </resources>

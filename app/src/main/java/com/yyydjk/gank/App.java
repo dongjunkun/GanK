@@ -23,6 +23,7 @@ public class App extends Application {
                 .methodCount(2)
                 .hideThreadInfo()
                 .logLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
+
     }
 
     public static Context getContext() {

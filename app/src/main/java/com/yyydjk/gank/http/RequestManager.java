@@ -34,6 +34,10 @@ public class RequestManager {
     private static Handler handler = new Handler(Looper.getMainLooper());
 
     public static void get(Object tag, final String url, final CallBack callBack) {
+        get(tag, url, false, callBack);
+    }
+
+    public static void get(Object tag, final String url, final boolean isCache, final CallBack callBack) {
         //读取缓存数据
         final DBManager dbManager = new DBManager();
         String data = dbManager.getData(url);
@@ -76,7 +80,7 @@ public class RequestManager {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        handleResponse(json, callBack, dbManager, url);
+                        handleResponse(json, callBack, dbManager, url, isCache);
                     }
                 });
 
@@ -92,7 +96,7 @@ public class RequestManager {
      * @param dbManager
      * @param url
      */
-    private static void handleResponse(String json, CallBack callBack, DBManager dbManager, String url) {
+    private static void handleResponse(String json, CallBack callBack, DBManager dbManager, String url, boolean isCache) {
         try {
             //转化为json对象
             JSONObject jsonObject = new JSONObject(json);
@@ -113,8 +117,10 @@ public class RequestManager {
             }
             //获取results的值
             String results = jsonObject.getString(RESULTS);
-            //插入缓存数据库
-            dbManager.insertData(url, results);
+            if (isCache) {
+                //插入缓存数据库
+                dbManager.insertData(url, results);
+            }
 
             //返回成功回调
             callBack.onSuccess(new Gson().fromJson(results, callBack.type));

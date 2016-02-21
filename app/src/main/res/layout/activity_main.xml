@@ -1,70 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yyydjk.gank.widget.ResideLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.yyydjk.gank.widget.ResideLayout
     android:id="@+id/resideLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activitys.MainActivity">
 
-    <RelativeLayout
+    <com.yyydjk.gank.theme.ColorRelativeLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
+        android:background="?attr/menuBackground"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/background_image"
+        <LinearLayout
+            android:id="@+id/top_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="35dp"/>
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="80dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_menu_background"
-            android:scaleType="centerCrop" />
+            android:layout_above="@+id/bottom_menu"
+            android:layout_below="@+id/top_menu">
 
-        <TextView
-            android:id="@+id/all"
-            android:text="all"
-            style="@style/MenuStyle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/fuli"
-            android:layout_below="@+id/all"
-            android:text="福利"
-            style="@style/MenuStyle" />
+                <TextView
+                    android:id="@+id/all"
+                    style="@style/MenuStyle"
+                    android:text="@string/all"/>
 
-        <TextView
-            android:id="@+id/android"
-            android:layout_below="@+id/fuli"
-            android:text="Android"
-            style="@style/MenuStyle" />
+                <TextView
+                    android:id="@+id/fuli"
+                    style="@style/MenuStyle"
+                    android:text="@string/fuli"/>
 
-        <TextView
-            android:id="@+id/ios"
-            android:layout_below="@+id/android"
-            android:text="iOS"
-            style="@style/MenuStyle" />
+                <TextView
+                    android:id="@+id/android"
+                    style="@style/MenuStyle"
+                    android:text="@string/android"/>
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/ios"
+                    style="@style/MenuStyle"
+                    android:text="@string/ios"/>
+
+                <TextView
+                    android:id="@+id/video"
+                    style="@style/MenuStyle"
+                    android:text="@string/video"/>
+
+                <TextView
+                    android:id="@+id/front"
+                    style="@style/MenuStyle"
+                    android:text="@string/front"/>
+
+                <TextView
+                    android:id="@+id/resource"
+                    style="@style/MenuStyle"
+                    android:text="@string/resource"/>
+
+                <TextView
+                    android:id="@+id/app"
+                    style="@style/MenuStyle"
+                    android:text="@string/app"/>
+                <TextView
+                    android:id="@+id/more"
+                    style="@style/MenuStyle"
+                    android:text="@string/more"/>
+
+                <!--<TextView-->
+                    <!--android:id="@+id/about"-->
+                    <!--style="@style/MenuStyle"-->
+                    <!--android:text="@string/about"/>-->
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/bottom_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:padding="12dp"
+                android:text="关于"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:padding="12dp"
+                android:text="主题"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+    </com.yyydjk.gank.theme.ColorRelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <View
+        <com.yyydjk.gank.theme.ColorView
             android:id="@+id/status_bar"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="@color/colorPrimary" />
+            android:background="?attr/colorPrimary"/>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tool_bar"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/colorPrimary" />
+        <include layout="@layout/tool_bar_layout"/>
 
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white" />
+            android:background="@android:color/white"/>
 
     </LinearLayout>
 

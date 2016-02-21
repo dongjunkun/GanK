@@ -309,7 +309,8 @@ public class ResideLayout extends ViewGroup {
                 // There are still more children above the panel but they won't be affected.
                 break;
             }
-            child.setVisibility(INVISIBLE);
+            if (panel.getLeft() == 0)
+                child.setVisibility(INVISIBLE);
         }
     }
 
