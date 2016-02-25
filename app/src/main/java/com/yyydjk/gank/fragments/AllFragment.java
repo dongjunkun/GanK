@@ -61,15 +61,19 @@ public class AllFragment extends BaseFragment implements OnRefreshListener, OnLo
                         }
                         ganHuos.addAll(result);
                         adapter.notifyDataSetChanged();
-                        mSwipeToLoadLayout.setRefreshing(false);
-                        mSwipeToLoadLayout.setLoadingMore(false);
+                        if (mSwipeToLoadLayout != null) {
+                            mSwipeToLoadLayout.setRefreshing(false);
+                            mSwipeToLoadLayout.setLoadingMore(false);
+                        }
                     }
 
                     @Override
                     public void onFailure(String message) {
                         super.onFailure(message);
-                        mSwipeToLoadLayout.setRefreshing(false);
-                        mSwipeToLoadLayout.setLoadingMore(false);
+                        if(mSwipeToLoadLayout != null) {
+                            mSwipeToLoadLayout.setRefreshing(false);
+                            mSwipeToLoadLayout.setLoadingMore(false);
+                        }
                     }
                 });
     }

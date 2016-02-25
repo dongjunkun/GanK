@@ -68,8 +68,10 @@ public class VideoFragment extends BaseFragment implements OnRefreshListener, On
                     @Override
                     public void onFailure(String message) {
                         super.onFailure(message);
-                        mSwipeToLoadLayout.setRefreshing(false);
-                        mSwipeToLoadLayout.setLoadingMore(false);
+                        if(mSwipeToLoadLayout != null) {
+                            mSwipeToLoadLayout.setRefreshing(false);
+                            mSwipeToLoadLayout.setLoadingMore(false);
+                        }
                     }
                 });
     }
