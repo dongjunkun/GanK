@@ -1,5 +1,4 @@
-<com.aspsine.swipetoloadlayout.SwipeToLoadLayout
-    android:id="@+id/swipeToLoadLayout"
+<com.aspsine.swipetoloadlayout.SwipeToLoadLayout android:id="@+id/swipeToLoadLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -17,14 +16,14 @@
 
     <include
         android:id="@id/swipe_refresh_header"
-        layout="@layout/layout_google_hook_header"/>
+        layout="@layout/layout_google_hook_header" />
 
     <com.yyydjk.gank.theme.ColorListView
         android:id="@+id/swipe_target"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"
-        />
+        android:divider="@null" />
+
     <include
         android:id="@id/swipe_load_more_footer"
         layout="@layout/layout_google_footer" />

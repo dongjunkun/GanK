@@ -35,7 +35,7 @@ public class ColorRelativeLayout extends RelativeLayout implements ColorUiInterf
 
     @Override
     public void setTheme(Resources.Theme themeId) {
-        if(attr_background != -1) {
+        if (attr_background != -1) {
             ViewAttributeUtil.applyBackgroundDrawable(this, themeId, attr_background);
         }
     }

@@ -91,7 +91,7 @@ public class BaseActivity extends AppCompatActivity {
         win.setAttributes(winParams);
     }
 
-    protected String getName(){
+    protected String getName() {
         return BaseActivity.class.getName();
     }
 

@@ -25,8 +25,10 @@ import butterknife.Bind;
  */
 public class ResourceFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
 
-    @Bind(R.id.swipe_target) ListView mListView;
-    @Bind(R.id.swipeToLoadLayout) SwipeToLoadLayout mSwipeToLoadLayout;
+    @Bind(R.id.swipe_target)
+    ListView mListView;
+    @Bind(R.id.swipeToLoadLayout)
+    SwipeToLoadLayout mSwipeToLoadLayout;
     private AndroidAdapter adapter;
     private List<GanHuo> ganHuos = new ArrayList<>();
 
@@ -47,7 +49,7 @@ public class ResourceFragment extends BaseFragment implements OnRefreshListener,
     }
 
     private void getData(final boolean isRefresh) {
-        RequestManager.get(getName(), "http://gank.avosapps.com/api/data/拓展资源/"
+        RequestManager.get(getName(), "http://gank.io/api/data/拓展资源/"
                         + String.valueOf(pageSize) + "/"
                         + String.valueOf(page), isRefresh,
                 new CallBack<List<GanHuo>>() {
@@ -70,7 +72,7 @@ public class ResourceFragment extends BaseFragment implements OnRefreshListener,
                     @Override
                     public void onFailure(String message) {
                         super.onFailure(message);
-                        if(mSwipeToLoadLayout != null) {
+                        if (mSwipeToLoadLayout != null) {
                             mSwipeToLoadLayout.setRefreshing(false);
                             mSwipeToLoadLayout.setLoadingMore(false);
                         }

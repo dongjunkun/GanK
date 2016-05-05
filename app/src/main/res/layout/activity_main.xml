@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yyydjk.gank.widget.ResideLayout
-    android:id="@+id/resideLayout"
+<com.yyydjk.gank.widget.ResideLayout android:id="@+id/resideLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,7 +23,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="35dp"/>
+                android:layout_marginTop="35dp" />
 
             <TextView
                 android:id="@+id/desc"
@@ -36,7 +35,7 @@
                 android:maxLines="1"
                 android:padding="10dp"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -55,51 +54,52 @@
                 <TextView
                     android:id="@+id/all"
                     style="@style/MenuStyle"
-                    android:text="@string/all"/>
+                    android:text="@string/all" />
 
                 <TextView
                     android:id="@+id/fuli"
                     style="@style/MenuStyle"
-                    android:text="@string/fuli"/>
+                    android:text="@string/fuli" />
 
                 <TextView
                     android:id="@+id/android"
                     style="@style/MenuStyle"
-                    android:text="@string/android"/>
+                    android:text="@string/android" />
 
                 <TextView
                     android:id="@+id/ios"
                     style="@style/MenuStyle"
-                    android:text="@string/ios"/>
+                    android:text="@string/ios" />
 
                 <TextView
                     android:id="@+id/video"
                     style="@style/MenuStyle"
-                    android:text="@string/video"/>
+                    android:text="@string/video" />
 
                 <TextView
                     android:id="@+id/front"
                     style="@style/MenuStyle"
-                    android:text="@string/front"/>
+                    android:text="@string/front" />
 
                 <TextView
                     android:id="@+id/resource"
                     style="@style/MenuStyle"
-                    android:text="@string/resource"/>
+                    android:text="@string/resource" />
 
                 <TextView
                     android:id="@+id/app"
                     style="@style/MenuStyle"
-                    android:text="@string/app"/>
+                    android:text="@string/app" />
+
                 <TextView
                     android:id="@+id/more"
                     style="@style/MenuStyle"
-                    android:text="@string/more"/>
+                    android:text="@string/more" />
 
                 <!--<TextView-->
-                    <!--android:id="@+id/about"-->
-                    <!--style="@style/MenuStyle"-->
-                    <!--android:text="@string/about"/>-->
+                <!--android:id="@+id/about"-->
+                <!--style="@style/MenuStyle"-->
+                <!--android:text="@string/about"/>-->
 
             </LinearLayout>
         </ScrollView>
@@ -120,7 +120,7 @@
                 android:padding="12dp"
                 android:text="关于"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/theme"
@@ -130,7 +130,7 @@
                 android:padding="12dp"
                 android:text="主题"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -145,15 +145,15 @@
             android:id="@+id/status_bar"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="?attr/colorPrimary"/>
+            android:background="?attr/colorPrimary" />
 
-        <include layout="@layout/tool_bar_layout"/>
+        <include layout="@layout/tool_bar_layout" />
 
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white" />
 
     </LinearLayout>
 

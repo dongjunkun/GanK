@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -96,9 +95,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     ImageView mIcon;
     @Bind(R.id.title)
     TextView mTitle;
-    @Bind(R.id.top_menu) LinearLayout mTopMenu;
-    @Bind(R.id.more) TextView mMore;
-    @Bind(R.id.bottom_menu) LinearLayout mBottomMenu;
+    @Bind(R.id.more)
+    TextView mMore;
 
     private Fragment currentFragment;
 
@@ -142,14 +140,14 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                 .dontAnimate()
                 .into(mAvatar);
 
-        RequestManager.get(getName(), "http://gank.avosapps.com/api/data/休息视频/1/1", true, new CallBack<List<GanHuo>>() {
+        RequestManager.get(getName(), "http://gank.io/api/data/休息视频/1/1", true, new CallBack<List<GanHuo>>() {
             @Override
             public void onSuccess(List<GanHuo> result) {
                 mDesc.setText(result.get(0).getDesc());
             }
         });
 
-        RequestManager.get(getName(), "http://gank.avosapps.com/api/data/福利/1/1", true, new CallBack<List<GanHuo>>() {
+        RequestManager.get(getName(), "http://gank.io/api/data/福利/1/1", true, new CallBack<List<GanHuo>>() {
             @Override
             public void onSuccess(List<GanHuo> result) {
                 Glide.with(MainActivity.this)
@@ -211,65 +209,65 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
             case R.id.avatar:
                 break;
             case R.id.all:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_view_comfy).sizeDp(20));
                 mTitle.setText(R.string.app_name);
                 switchFragment(new AllFragment());
-                mResideLayout.closePane();
                 break;
             case R.id.fuli:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_mood).sizeDp(20));
                 mTitle.setText(R.string.fuli);
                 switchFragment(new FuLiFragment());
-                mResideLayout.closePane();
                 break;
             case R.id.android:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_android).sizeDp(20));
                 mTitle.setText(R.string.android);
                 switchFragment(new AndroidFragment());
-                mResideLayout.closePane();
                 break;
             case R.id.ios:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apple).sizeDp(20));
                 mTitle.setText(R.string.ios);
                 switchFragment(new IOSFragment());
-                mResideLayout.closePane();
                 break;
 
             case R.id.video:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_collection_video).sizeDp(20));
                 mTitle.setText(R.string.video);
                 switchFragment(new VideoFragment());
-                mResideLayout.closePane();
                 break;
             case R.id.front:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_language_javascript).sizeDp(20));
                 mTitle.setText(R.string.front);
                 switchFragment(new FrontFragment());
-                mResideLayout.closePane();
                 break;
             case R.id.resource:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(FontAwesome.Icon.faw_location_arrow).sizeDp(20));
                 mTitle.setText(R.string.resource);
                 switchFragment(new ResourceFragment());
-                mResideLayout.closePane();
                 break;
             case R.id.app:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(20));
                 mTitle.setText(R.string.app);
                 switchFragment(new AppFragment());
-                mResideLayout.closePane();
                 break;
             case R.id.more:
+                mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_more).sizeDp(20));
                 mTitle.setText(R.string.more);
                 switchFragment(new MoreFragment());
-                mResideLayout.closePane();
                 break;
 //            case R.id.setting:
+//                mResideLayout.closePane();
 //                mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_settings).sizeDp(20));
 //                mTitle.setText(R.string.setting);
 //                switchFragment(new SettingFragment());
-//                mResideLayout.closePane();
 //                break;
             case R.id.about:
                 new MaterialDialog.Builder(this)

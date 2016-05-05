@@ -44,10 +44,10 @@ public class ColorListView extends ListView implements ColorUiInterface {
         this.divider_height = getDividerHeight();
         ViewAttributeUtil.applyBackgroundDrawable(this, themeId, attr_background);
         int res_divider = this.attr_divider;
-        if(res_divider > 0) {
+        if (res_divider > 0) {
             TypedArray ta = themeId.obtainStyledAttributes(new int[]{res_divider});
             Drawable drawable = ta.getDrawable(0);
-            ((ListView)getView()).setDivider(drawable);
+            ((ListView) getView()).setDivider(drawable);
             ta.recycle();
         }
         setDividerHeight(divider_height);

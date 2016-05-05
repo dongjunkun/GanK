@@ -21,6 +21,7 @@ public class GoogleLoadMoreFooterView extends FrameLayout implements SwipeTrigge
     private int mTriggerOffset;
 
     private RingProgressDrawable ringProgressDrawable;
+
     public GoogleLoadMoreFooterView(Context context) {
         this(context, null);
     }
@@ -56,7 +57,7 @@ public class GoogleLoadMoreFooterView extends FrameLayout implements SwipeTrigge
 
     @Override
     public void onSwipe(int y, boolean isComplete) {
-        if (!isComplete){
+        if (!isComplete) {
             ringProgressDrawable.setPercent(-y / (float) mTriggerOffset);
         }
     }

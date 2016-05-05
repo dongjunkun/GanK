@@ -121,7 +121,8 @@ public class AllAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        @Bind(R.id.text) TextView mText;
+        @Bind(R.id.text)
+        TextView mText;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

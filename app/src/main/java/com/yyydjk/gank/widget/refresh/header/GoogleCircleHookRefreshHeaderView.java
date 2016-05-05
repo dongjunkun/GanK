@@ -45,7 +45,7 @@ public class GoogleCircleHookRefreshHeaderView extends FrameLayout implements Sw
 //                R.color.colorRedPrimary,
 //                R.color.colorIndigoPrimary,
 //                R.color.colorLimePrimary);
-        progressView.setColorSchemeColors(ThemeUtils.getThemeColor(getContext(),R.attr.colorPrimary));
+        progressView.setColorSchemeColors(ThemeUtils.getThemeColor(getContext(), R.attr.colorPrimary));
         progressView.setStartEndTrim(0, (float) 0.75);
     }
 

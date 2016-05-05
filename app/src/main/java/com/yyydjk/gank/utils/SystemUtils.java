@@ -9,16 +9,15 @@ import android.graphics.Rect;
 public class SystemUtils {
 
     /**
-     *
      * @param activity
      * @return > 0 success; <= 0 fail
      */
-    public static int getStatusHeight(Activity activity){
+    public static int getStatusHeight(Activity activity) {
         int statusHeight = 0;
         Rect localRect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);
         statusHeight = localRect.top;
-        if (0 == statusHeight){
+        if (0 == statusHeight) {
             Class<?> localClass;
             try {
                 localClass = Class.forName("com.android.internal.R$dimen");

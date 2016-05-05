@@ -18,8 +18,8 @@ import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
-import com.yyydjk.gank.R;
 import com.lsjwzh.widget.materialloadingprogressbar.MaterialProgressDrawable;
+import com.yyydjk.gank.R;
 
 /**
  * Private class created to work around issues with AnimationListeners being
@@ -311,24 +311,24 @@ public class GoogleCircleProgressView extends ImageView {
         }
     }
 
-    public boolean isRunning(){
+    public boolean isRunning() {
         return mProgressDrawable.isRunning();
     }
 
-    public void start(){
-        if (!mProgressDrawable.isRunning()){
+    public void start() {
+        if (!mProgressDrawable.isRunning()) {
             mProgressDrawable.start();
         }
     }
 
-    public void stop(){
-        if (mProgressDrawable.isRunning()){
+    public void stop() {
+        if (mProgressDrawable.isRunning()) {
             mProgressDrawable.stop();
         }
     }
 
-    public void setProgressRotation(float rotation){
-        if (mProgressDrawable.isRunning()){
+    public void setProgressRotation(float rotation) {
+        if (mProgressDrawable.isRunning()) {
             stop();
         }
         mProgressDrawable.showArrow(true);
@@ -336,7 +336,7 @@ public class GoogleCircleProgressView extends ImageView {
         mProgressDrawable.setProgressRotation(rotation);
     }
 
-    public void setStartEndTrim(float start, float end){
+    public void setStartEndTrim(float start, float end) {
         mProgressDrawable.setStartEndTrim(start, end);
     }
 
