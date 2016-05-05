@@ -28,6 +28,7 @@ import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import com.yyydjk.gank.R;
 import com.yyydjk.gank.base.BaseActivity;
 import com.yyydjk.gank.beans.GanHuo;
+import com.yyydjk.gank.event.SkinChangeEvent;
 import com.yyydjk.gank.fragments.AllFragment;
 import com.yyydjk.gank.fragments.AndroidFragment;
 import com.yyydjk.gank.fragments.AppFragment;
@@ -45,6 +46,8 @@ import com.yyydjk.gank.utils.PreUtils;
 import com.yyydjk.gank.utils.SystemUtils;
 import com.yyydjk.gank.utils.ThemeUtils;
 import com.yyydjk.gank.widget.ResideLayout;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -299,6 +302,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
         if (selectedColor == ThemeUtils.getThemeColor(this, R.attr.colorPrimary))
             return;
+        EventBus.getDefault().post(new SkinChangeEvent());
 
         if (selectedColor == getResources().getColor(R.color.colorBluePrimary)) {
             setTheme(R.style.BlueTheme);

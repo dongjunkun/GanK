@@ -72,4 +72,5 @@ dependencies {
     compile('com.github.afollestad.material-dialogs:commons:0.8.5.4@aar') {
         transitive = true
     }
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

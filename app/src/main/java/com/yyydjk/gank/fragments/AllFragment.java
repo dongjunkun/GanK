@@ -12,8 +12,12 @@ import com.yyydjk.gank.R;
 import com.yyydjk.gank.adapter.AllAdapter;
 import com.yyydjk.gank.base.BaseFragment;
 import com.yyydjk.gank.beans.GanHuo;
+import com.yyydjk.gank.event.SkinChangeEvent;
 import com.yyydjk.gank.http.CallBack;
 import com.yyydjk.gank.http.RequestManager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +47,15 @@ public class AllFragment extends BaseFragment implements OnRefreshListener, OnLo
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        EventBus.getDefault().register(this);
         initView();
         onRefresh();
+    }
+
+    @Subscribe
+    public void onEvent(SkinChangeEvent event){
+        adapter.notifyDataSetChanged();
+
     }
 
     private void getData(final boolean isRefresh) {
@@ -97,6 +108,13 @@ public class AllFragment extends BaseFragment implements OnRefreshListener, OnLo
     public void onRefresh() {
         page = 1;
         getData(true);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+
     }
 
     @Override
