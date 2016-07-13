@@ -6,15 +6,10 @@ repositories {
 
 android {
     signingConfigs {
-        config {
-            keyAlias 'djk'
-            keyPassword '319456'
-            storeFile file('E:/djk.keystore')
-            storePassword '319456'
-        }
+
     }
     compileSdkVersion 23
-    buildToolsVersion '24.0.0 rc3'
+    buildToolsVersion '24.0.0'
     defaultConfig {
         applicationId "com.yyydjk.gank"
         minSdkVersion 14
@@ -33,7 +28,6 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -73,4 +67,5 @@ dependencies {
         transitive = true
     }
     compile 'org.greenrobot:eventbus:3.0.0'
+    //this is a test
 }
