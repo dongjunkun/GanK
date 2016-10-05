@@ -10,11 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
+import com.squareup.picasso.Picasso;
 import com.yyydjk.gank.R;
 import com.yyydjk.gank.beans.GanHuo;
 import com.yyydjk.gank.utils.ThemeUtils;
@@ -67,7 +67,7 @@ public class AllAdapter extends BaseAdapter {
                 view1.setTag(viewHolder1);
                 convertView = view1;
             }
-            Glide.with(context).load(ganHuo.getUrl()).placeholder(R.mipmap.avatar).into(viewHolder1.mImage);
+            Picasso.with(context).load(ganHuo.getUrl()).placeholder(R.mipmap.avatar).into(viewHolder1.mImage);
         } else {
             ViewHolder viewHolder2 = null;
             if (convertView != null && convertView.getTag() instanceof ViewHolder) {

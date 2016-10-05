@@ -19,12 +19,12 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
-import com.bumptech.glide.Glide;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.foundation_icons_typeface_library.FoundationIcons;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
+import com.squareup.picasso.Picasso;
 import com.yyydjk.gank.R;
 import com.yyydjk.gank.base.BaseActivity;
 import com.yyydjk.gank.beans.GanHuo;
@@ -54,7 +54,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 import me.xiaopan.android.content.res.DimenUtils;
 import me.xiaopan.android.preference.PreferencesUtils;
 
@@ -130,7 +130,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         setIconDrawable(mTheme, MaterialDesignIconic.Icon.gmi_palette);
         setIconDrawable(mMore, MaterialDesignIconic.Icon.gmi_more);
 
-        Glide.with(MainActivity.this)
+        Picasso.with(MainActivity.this)
                 .load(R.mipmap.avatar)
                 .placeholder(new IconicsDrawable(this)
                         .icon(FoundationIcons.Icon.fou_photo)
@@ -139,8 +139,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                         .roundedCornersDp(40)
                         .paddingDp(15)
                         .sizeDp(75))
-                .bitmapTransform(new CropCircleTransformation(this))
-                .dontAnimate()
+                .transform(new CropCircleTransformation())
                 .into(mAvatar);
 
         RequestManager.get(getName(), "http://gank.io/api/data/休息视频/1/1", true, new CallBack<List<GanHuo>>() {
@@ -153,7 +152,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         RequestManager.get(getName(), "http://gank.io/api/data/福利/1/1", true, new CallBack<List<GanHuo>>() {
             @Override
             public void onSuccess(List<GanHuo> result) {
-                Glide.with(MainActivity.this)
+                Picasso.with(MainActivity.this)
                         .load(result.get(0).getUrl())
                         .placeholder(new IconicsDrawable(MainActivity.this)
                                 .icon(FoundationIcons.Icon.fou_photo)
@@ -162,8 +161,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                                 .roundedCornersDp(40)
                                 .paddingDp(15)
                                 .sizeDp(75))
-                        .bitmapTransform(new CropCircleTransformation(MainActivity.this))
-                        .dontAnimate()
+                        .transform(new CropCircleTransformation())
                         .into(mAvatar);
             }
         });

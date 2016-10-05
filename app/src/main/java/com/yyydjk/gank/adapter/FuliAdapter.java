@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.yyydjk.gank.R;
 import com.yyydjk.gank.beans.GanHuo;
 
@@ -53,7 +53,7 @@ public class FuliAdapter extends BaseAdapter {
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }
-        Glide.with(context).load(ganHuos.get(position).getUrl()).placeholder(R.mipmap.avatar).into(viewHolder.mImage);
+        Picasso.with(context).load(ganHuos.get(position).getUrl()).placeholder(R.mipmap.avatar).into(viewHolder.mImage);
         return convertView;
     }
 
