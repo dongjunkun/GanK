@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="2dp"
-    app:cardElevation="2dp"
+    app:cardElevation="1dp"
     app:cardUseCompatPadding="true"
     android:orientation="vertical">
 

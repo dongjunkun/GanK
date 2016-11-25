@@ -73,7 +73,7 @@ public class AllAdapter extends BaseAdapter {
             if (convertView != null && convertView.getTag() instanceof ViewHolder) {
                 viewHolder2 = (ViewHolder) convertView.getTag();
             } else {
-                view2 = LayoutInflater.from(context).inflate(R.layout.item_android, null);
+                view2 = LayoutInflater.from(context).inflate(R.layout.item_common, null);
                 viewHolder2 = new ViewHolder(view2);
                 view2.setTag(viewHolder2);
                 convertView = view2;

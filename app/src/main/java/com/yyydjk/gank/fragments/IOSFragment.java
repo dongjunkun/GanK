@@ -9,7 +9,7 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.yyydjk.gank.R;
-import com.yyydjk.gank.adapter.AndroidAdapter;
+import com.yyydjk.gank.adapter.CommonAdapter;
 import com.yyydjk.gank.base.BaseFragment;
 import com.yyydjk.gank.beans.GanHuo;
 import com.yyydjk.gank.http.CallBack;
@@ -29,7 +29,7 @@ public class IOSFragment extends BaseFragment implements OnRefreshListener, OnLo
     ListView mListView;
     @Bind(R.id.swipeToLoadLayout)
     SwipeToLoadLayout mSwipeToLoadLayout;
-    private AndroidAdapter adapter;
+    private CommonAdapter adapter;
     private List<GanHuo> ganHuos = new ArrayList<>();
 
     private int pageSize = 30;
@@ -89,7 +89,7 @@ public class IOSFragment extends BaseFragment implements OnRefreshListener, OnLo
         });
         mSwipeToLoadLayout.setOnRefreshListener(this);
         mSwipeToLoadLayout.setOnLoadMoreListener(this);
-        adapter = new AndroidAdapter(getActivity(), ganHuos);
+        adapter = new CommonAdapter(getActivity(), ganHuos);
         mListView.setAdapter(adapter);
     }
 

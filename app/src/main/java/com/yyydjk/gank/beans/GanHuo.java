@@ -28,6 +28,7 @@ public class GanHuo implements Serializable {
     private String objectId;
     private String createdAt;
     private String updatedAt;
+    private int height;
 
     public void setWho(String who) {
         this.who = who;
@@ -99,5 +100,13 @@ public class GanHuo implements Serializable {
 
     public String getUpdatedAt() {
         return updatedAt;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

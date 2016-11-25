@@ -20,11 +20,11 @@ import butterknife.ButterKnife;
 /**
  * Created by dongjunkun on 2016/2/15.
  */
-public class AndroidAdapter extends BaseAdapter {
+public class CommonAdapter extends BaseAdapter {
     private Context context;
     private List<GanHuo> ganHuos;
 
-    public AndroidAdapter(Context context, List<GanHuo> ganHuos) {
+    public CommonAdapter(Context context, List<GanHuo> ganHuos) {
         this.context = context;
         this.ganHuos = ganHuos;
     }
@@ -50,7 +50,7 @@ public class AndroidAdapter extends BaseAdapter {
         if (convertView != null) {
             viewHolder = (ViewHolder) convertView.getTag();
         } else {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_android, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_common, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }
@@ -59,7 +59,6 @@ public class AndroidAdapter extends BaseAdapter {
                 + ganHuos.get(position).getDesc() + "</a>"
                 + "[" + ganHuos.get(position).getWho() + "]"));
         viewHolder.mText.setMovementMethod(LinkMovementMethod.getInstance());
-//        viewHolder.mText.setText(ganHuos.get(position).getDesc()+"["+ganHuos.get(position).getWho()+"]");
         return convertView;
     }
 

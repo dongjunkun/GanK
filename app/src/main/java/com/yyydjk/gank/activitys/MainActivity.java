@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -40,7 +39,9 @@ import com.yyydjk.gank.fragments.ResourceFragment;
 import com.yyydjk.gank.fragments.VideoFragment;
 import com.yyydjk.gank.http.CallBack;
 import com.yyydjk.gank.http.RequestManager;
+import com.yyydjk.gank.theme.ColorRelativeLayout;
 import com.yyydjk.gank.theme.ColorUiUtil;
+import com.yyydjk.gank.theme.ColorView;
 import com.yyydjk.gank.theme.Theme;
 import com.yyydjk.gank.utils.PreUtils;
 import com.yyydjk.gank.utils.SystemUtils;
@@ -60,47 +61,27 @@ import me.xiaopan.android.preference.PreferencesUtils;
 
 public class MainActivity extends BaseActivity implements ColorChooserDialog.ColorCallback {
 
-    @Bind(R.id.menu)
-    RelativeLayout mMenu;
-    @Bind(R.id.resideLayout)
-    ResideLayout mResideLayout;
-    @Bind(R.id.status_bar)
-    View mStatusBar;
-    @Bind(R.id.all)
-    TextView mAll;
-    @Bind(R.id.fuli)
-    TextView mFuli;
-    @Bind(R.id.android)
-    TextView mAndroid;
-    @Bind(R.id.ios)
-    TextView mIos;
-    @Bind(R.id.video)
-    TextView mVideo;
-    @Bind(R.id.front)
-    TextView mFront;
-    @Bind(R.id.resource)
-    TextView mResource;
-    @Bind(R.id.about)
-    TextView mAbout;
-    @Bind(R.id.container)
-    FrameLayout mContainer;
-    @Bind(R.id.app)
-    TextView mApp;
-    @Bind(R.id.scrollView)
-    ScrollView mScrollView;
-    @Bind(R.id.theme)
-    TextView mTheme;
-    @Bind(R.id.avatar)
-    ImageView mAvatar;
-    @Bind(R.id.desc)
-    TextView mDesc;
-    @Bind(R.id.icon)
-    ImageView mIcon;
-    @Bind(R.id.title)
-    TextView mTitle;
-    @Bind(R.id.more)
-    TextView mMore;
 
+    @Bind(R.id.avatar) ImageView mAvatar;
+    @Bind(R.id.desc) TextView mDesc;
+    @Bind(R.id.all) TextView mAll;
+    @Bind(R.id.fuli) TextView mFuli;
+    @Bind(R.id.android) TextView mAndroid;
+    @Bind(R.id.ios) TextView mIos;
+    @Bind(R.id.video) TextView mVideo;
+    @Bind(R.id.front) TextView mFront;
+    @Bind(R.id.resource) TextView mResource;
+    @Bind(R.id.app) TextView mApp;
+    @Bind(R.id.more) TextView mMore;
+    @Bind(R.id.scrollView) ScrollView mScrollView;
+    @Bind(R.id.about) TextView mAbout;
+    @Bind(R.id.theme) TextView mTheme;
+    @Bind(R.id.menu) ColorRelativeLayout mMenu;
+    @Bind(R.id.status_bar) ColorView mStatusBar;
+    @Bind(R.id.icon) ImageView mIcon;
+    @Bind(R.id.title) TextView mTitle;
+    @Bind(R.id.container) FrameLayout mContainer;
+    @Bind(R.id.resideLayout) ResideLayout mResideLayout;
     private Fragment currentFragment;
 
     @Override
@@ -126,7 +107,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         setIconDrawable(mResource, FontAwesome.Icon.faw_location_arrow);
         setIconDrawable(mApp, MaterialDesignIconic.Icon.gmi_apps);
         setIconDrawable(mAbout, MaterialDesignIconic.Icon.gmi_account);
-//        setIconDrawable(mSetting, MaterialDesignIconic.Icon.gmi_settings);
         setIconDrawable(mTheme, MaterialDesignIconic.Icon.gmi_palette);
         setIconDrawable(mMore, MaterialDesignIconic.Icon.gmi_more);
 
@@ -264,12 +244,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                 mTitle.setText(R.string.more);
                 switchFragment(new MoreFragment());
                 break;
-//            case R.id.setting:
-//                mResideLayout.closePane();
-//                mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_settings).sizeDp(20));
-//                mTitle.setText(R.string.setting);
-//                switchFragment(new SettingFragment());
-//                break;
+
             case R.id.about:
                 new MaterialDialog.Builder(this)
                         .title(R.string.about)
