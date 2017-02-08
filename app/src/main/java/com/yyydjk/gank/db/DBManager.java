@@ -8,7 +8,6 @@ import com.yyydjk.gank.App;
 
 
 /**
- * Created by dongjunkun on 2016/1/13.
  */
 public class DBManager {
     private SQLiteDatabase db;

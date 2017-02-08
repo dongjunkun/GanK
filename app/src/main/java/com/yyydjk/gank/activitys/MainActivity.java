@@ -122,6 +122,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                 .transform(new CropCircleTransformation())
                 .into(mAvatar);
 
+
+        //
         RequestManager.get(getName(), "http://gank.io/api/data/休息视频/1/1", true, new CallBack<List<GanHuo>>() {
             @Override
             public void onSuccess(List<GanHuo> result) {

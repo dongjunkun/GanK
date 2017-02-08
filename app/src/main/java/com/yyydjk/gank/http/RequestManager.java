@@ -23,7 +23,6 @@ import okhttp3.Response;
 
 /**
  * 管理所有请求类
- * Created by dongjunkun on 2016/2/1.
  */
 public class RequestManager {
     private static final String ERROR = "error";

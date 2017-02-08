@@ -55,7 +55,6 @@ public class AllFragment extends BaseFragment implements OnRefreshListener, OnLo
     @Subscribe
     public void onEvent(SkinChangeEvent event){
         adapter.notifyDataSetChanged();
-
     }
 
     private void getData(final boolean isRefresh) {
