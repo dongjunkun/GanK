@@ -7,13 +7,16 @@ import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.yyydjk.gank.App;
 import com.yyydjk.gank.db.DBManager;
+import com.yyydjk.gank.utils.NetworkUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
-import me.xiaopan.android.net.NetworkUtils;
+import me.xiaopan.android.preference.PreferencesUtils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Interceptor;
@@ -36,6 +39,106 @@ public class RequestManager {
     public static void get(Object tag, final String url, final CallBack callBack) {
         get(tag, url, false, callBack);
     }
+
+    /**
+     * 获取列表数据请求
+     *
+     * @param tag      标签，唯一标识
+     * @param url
+     * @param type
+     * @param listener
+     */
+    public static void getList(Object tag, final String url, final Type type, final boolean isCache, final HttpListener listener) {
+        final DBManager dbManager = new DBManager();
+
+        if (isCache) {
+            //读取缓存数据
+            String data = dbManager.getData(url);
+            if (!"".equals(data)) {
+                //解析json数据并返回成功回调
+                Object o = new Gson().fromJson(data, com.google.gson.internal.$Gson$Types.newParameterizedTypeWithOwner(null, ArrayList.class, type));
+                listener.onSuccess(o);
+            }
+        }
+
+        if (!NetworkUtils.isConnectedByState(App.getContext())) {
+            listener.onFailure(5, "网络开小差了！！");
+            return;
+        }
+        if (!NetworkUtils.isNetAvailable(App.getContext())) {
+            listener.onFailure(5, "当前网络不可用！！");
+            return;
+        }
+
+
+        Request request = new Request.Builder()
+                .tag(tag)
+                .url(url)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+                if (!call.isCanceled()) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            listener.onFailure(4, e.getLocalizedMessage());
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onResponse(final Call call, final Response response) throws IOException {
+                String json = response.body().string();
+
+                String authorization = response.header("Authorization");
+                if (authorization != null) {
+                    PreferencesUtils.putString(App.getContext(), "Authorization", "Beare " + authorization);
+                }
+                final String finalJson = json;
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Logger.json(finalJson);
+                            //转化为json对象
+                            JSONObject jsonObject = new JSONObject(finalJson);
+                            //判断error字段是否存在，不存在返回失败信息并结束请求
+                            if (jsonObject.isNull(ERROR)) {
+                                listener.onFailure(0, "error key not exists!!");
+                                return;
+                            }
+                            //判断后台返回结果，true表示失败，false表示成功，失败则返回错误回调并结束请求
+                            if (jsonObject.getBoolean(ERROR)) {
+                                listener.onFailure(0, "request failure!!");
+                                return;
+                            }
+                            //判断results字段是否存在，不存在返回时报回调并结束请求
+                            if (jsonObject.isNull(RESULTS)) {
+                                listener.onFailure(0, "results key not exists!!");
+                                return;
+                            }
+                            //获取results的值
+                            String results = jsonObject.getString(RESULTS);
+                            if (isCache) {
+                                //插入缓存数据库
+                                dbManager.insertData(url, results);
+                            }
+
+                            //返回成功回调
+                            Object o = new Gson().fromJson(results, com.google.gson.internal.$Gson$Types.newParameterizedTypeWithOwner(null, ArrayList.class, type));
+                            listener.onSuccess(o);
+
+                        } catch (JSONException e) {
+                            listener.onFailure(0, e.getLocalizedMessage());
+                        }
+                    }
+                });
+            }
+        });
+    }
+
 
     public static void get(Object tag, final String url, final boolean isCache, final CallBack callBack) {
         //读取缓存数据

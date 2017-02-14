@@ -29,14 +29,8 @@ import com.yyydjk.gank.base.BaseActivity;
 import com.yyydjk.gank.beans.GanHuo;
 import com.yyydjk.gank.event.SkinChangeEvent;
 import com.yyydjk.gank.fragments.AllFragment;
-import com.yyydjk.gank.fragments.AndroidFragment;
-import com.yyydjk.gank.fragments.AppFragment;
-import com.yyydjk.gank.fragments.FrontFragment;
+import com.yyydjk.gank.fragments.CommonFragment;
 import com.yyydjk.gank.fragments.FuLiFragment;
-import com.yyydjk.gank.fragments.IOSFragment;
-import com.yyydjk.gank.fragments.MoreFragment;
-import com.yyydjk.gank.fragments.ResourceFragment;
-import com.yyydjk.gank.fragments.VideoFragment;
 import com.yyydjk.gank.http.CallBack;
 import com.yyydjk.gank.http.RequestManager;
 import com.yyydjk.gank.theme.ColorRelativeLayout;
@@ -166,10 +160,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     }
 
     private void switchFragment(Fragment fragment) {
-        if (currentFragment == null || !fragment.getClass().getName().equals(currentFragment.getClass().getName())) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-            currentFragment = fragment;
-        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
     @Override
@@ -205,44 +196,44 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_android).sizeDp(20));
                 mTitle.setText(R.string.android);
-                switchFragment(new AndroidFragment());
+                switchFragment(CommonFragment.newInstance("Android"));
                 break;
             case R.id.ios:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apple).sizeDp(20));
                 mTitle.setText(R.string.ios);
-                switchFragment(new IOSFragment());
+                switchFragment(CommonFragment.newInstance("iOS"));
                 break;
 
             case R.id.video:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_collection_video).sizeDp(20));
                 mTitle.setText(R.string.video);
-                switchFragment(new VideoFragment());
+                switchFragment(CommonFragment.newInstance("休息视频"));
                 break;
             case R.id.front:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_language_javascript).sizeDp(20));
                 mTitle.setText(R.string.front);
-                switchFragment(new FrontFragment());
+                switchFragment(CommonFragment.newInstance("前端"));
                 break;
             case R.id.resource:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(FontAwesome.Icon.faw_location_arrow).sizeDp(20));
                 mTitle.setText(R.string.resource);
-                switchFragment(new ResourceFragment());
+                switchFragment(CommonFragment.newInstance("拓展资源"));
                 break;
             case R.id.app:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(20));
                 mTitle.setText(R.string.app);
-                switchFragment(new AppFragment());
+                switchFragment(CommonFragment.newInstance("App"));
                 break;
             case R.id.more:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_more).sizeDp(20));
                 mTitle.setText(R.string.more);
-                switchFragment(new MoreFragment());
+                switchFragment(CommonFragment.newInstance("瞎推荐"));
                 break;
 
             case R.id.about:
