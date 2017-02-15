@@ -1,6 +1,8 @@
 package com.yyydjk.gank.fragments;
 
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -17,7 +19,11 @@ import com.yyydjk.gank.R;
 import com.yyydjk.gank.base.BaseListFragment;
 import com.yyydjk.gank.beans.GanHuo;
 import com.yyydjk.gank.common.recyclerview.base.ViewHolder;
+import com.yyydjk.gank.event.SkinChangeEvent;
 import com.yyydjk.gank.utils.ThemeUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import me.xiaopan.android.content.res.DimenUtils;
 
@@ -30,6 +36,12 @@ import me.xiaopan.android.content.res.DimenUtils;
  */
 public class AllFragment extends BaseListFragment<GanHuo> {
     String type = "all";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
 
     @Override
     public int getItemLayout() {
@@ -47,6 +59,7 @@ public class AllFragment extends BaseListFragment<GanHuo> {
         } else {
             mImage.setVisibility(View.GONE);
             mText.setVisibility(View.VISIBLE);
+            mText.setLinkTextColor(ThemeUtils.getThemeColor(getActivity(),R.attr.colorPrimary));
             mText.setText(Html.fromHtml("<a href=\""
                     + ganHuo.getUrl() + "\">"
                     + ganHuo.getDesc() + "</a>"
@@ -93,5 +106,17 @@ public class AllFragment extends BaseListFragment<GanHuo> {
         return "http://gank.io/api/data/" + type + "/"
                 + String.valueOf(pageSize) + "/"
                 + String.valueOf(page);
+    }
+
+    @Subscribe
+    public void onEvent(SkinChangeEvent event){
+        headerAndFooterWrapper.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
     }
 }

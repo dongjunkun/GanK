@@ -1,14 +1,10 @@
 package com.yyydjk.gank.base;
 
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
@@ -80,17 +76,12 @@ public abstract class BaseListFragment<T> extends BaseFragment implements OnRefr
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_base_list, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_base_list;
     }
 
-
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initViews() {
         mSwipeToLoadLayout.setOnRefreshListener(this);
         mSwipeToLoadLayout.setOnLoadMoreListener(this);
         mMultipleStatusView.setOnRetryClickListener(new View.OnClickListener() {
@@ -118,9 +109,13 @@ public abstract class BaseListFragment<T> extends BaseFragment implements OnRefr
         mRecyclerView.removeItemDecoration(decoration);
         mRecyclerView.addItemDecoration(decoration);
         onRefresh();
-
     }
 
+    @Override
+    protected void lazyFetchData() {
+        onRefresh();
+
+    }
 
     private void getData(final boolean isRefresh) {
 

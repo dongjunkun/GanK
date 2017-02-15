@@ -14,7 +14,6 @@ import com.yyydjk.gank.common.recyclerview.base.ViewHolder;
  * A simple {@link Fragment} subclass.
  */
 public class FuLiFragment extends BaseListFragment<GanHuo> {
-    private String type = "福利";
 
     @Override
     public int getItemLayout() {
@@ -29,8 +28,6 @@ public class FuLiFragment extends BaseListFragment<GanHuo> {
 
     @Override
     protected String getUrl() {
-        return "http://gank.io/api/data/" + type + "/"
-                + String.valueOf(pageSize) + "/"
-                + String.valueOf(page);
+        return "http://gank.io/api/data/福利/" + String.valueOf(pageSize) + "/" + String.valueOf(page);
     }
 }

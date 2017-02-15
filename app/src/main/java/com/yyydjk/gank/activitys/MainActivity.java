@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -76,13 +78,16 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     @Bind(R.id.title) TextView mTitle;
     @Bind(R.id.container) FrameLayout mContainer;
     @Bind(R.id.resideLayout) ResideLayout mResideLayout;
-    private Fragment currentFragment;
+
+    private FragmentManager fragmentManager;
+    private String currentFragmentTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        fragmentManager = getSupportFragmentManager();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mStatusBar.setVisibility(View.VISIBLE);
@@ -146,7 +151,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         }
         mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_view_comfy).sizeDp(20));
         mTitle.setText("干货集中营");
-        switchFragment(new AllFragment());
+        switchFragment("all");
 
     }
 
@@ -159,9 +164,41 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         view.setCompoundDrawablePadding(DimenUtils.dp2px(this, 10));
     }
 
-    private void switchFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+
+    public void switchFragment(String name) {
+        if (currentFragmentTag != null && currentFragmentTag.equals(name))
+            return;
+
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+        Fragment currentFragment = fragmentManager.findFragmentByTag(currentFragmentTag);
+        if (currentFragment != null) {
+            ft.hide(currentFragment);
+        }
+
+        Fragment foundFragment = fragmentManager.findFragmentByTag(name);
+
+        if (foundFragment == null) {
+            if (name.equals("all")){
+                foundFragment = new AllFragment();
+            }else if (name.equals("福利")){
+                foundFragment = new FuLiFragment();
+            }else {
+                foundFragment = CommonFragment.newInstance(name);
+            }
+        }
+
+        if (foundFragment == null) {
+
+        } else if (foundFragment.isAdded()) {
+            ft.show(foundFragment);
+        } else {
+            ft.add(R.id.container, foundFragment, name);
+        }
+        ft.commit();
+        currentFragmentTag = name;
     }
+
 
     @Override
     public void onBackPressed() {
@@ -184,56 +221,56 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_view_comfy).sizeDp(20));
                 mTitle.setText(R.string.app_name);
-                switchFragment(new AllFragment());
+                switchFragment("all");
                 break;
             case R.id.fuli:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_mood).sizeDp(20));
                 mTitle.setText(R.string.fuli);
-                switchFragment(new FuLiFragment());
+                switchFragment("福利");
                 break;
             case R.id.android:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_android).sizeDp(20));
                 mTitle.setText(R.string.android);
-                switchFragment(CommonFragment.newInstance("Android"));
+                switchFragment("Android");
                 break;
             case R.id.ios:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apple).sizeDp(20));
                 mTitle.setText(R.string.ios);
-                switchFragment(CommonFragment.newInstance("iOS"));
+                switchFragment("iOS");
                 break;
 
             case R.id.video:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_collection_video).sizeDp(20));
                 mTitle.setText(R.string.video);
-                switchFragment(CommonFragment.newInstance("休息视频"));
+                switchFragment("休息视频");
                 break;
             case R.id.front:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_language_javascript).sizeDp(20));
                 mTitle.setText(R.string.front);
-                switchFragment(CommonFragment.newInstance("前端"));
+                switchFragment("前端");
                 break;
             case R.id.resource:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(FontAwesome.Icon.faw_location_arrow).sizeDp(20));
                 mTitle.setText(R.string.resource);
-                switchFragment(CommonFragment.newInstance("拓展资源"));
+                switchFragment("拓展资源");
                 break;
             case R.id.app:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(20));
                 mTitle.setText(R.string.app);
-                switchFragment(CommonFragment.newInstance("App"));
+                switchFragment("App");
                 break;
             case R.id.more:
                 mResideLayout.closePane();
                 mIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_more).sizeDp(20));
                 mTitle.setText(R.string.more);
-                switchFragment(CommonFragment.newInstance("瞎推荐"));
+                switchFragment("瞎推荐");
                 break;
 
             case R.id.about:
