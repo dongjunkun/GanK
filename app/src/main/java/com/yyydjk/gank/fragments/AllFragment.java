@@ -48,6 +48,11 @@ public class AllFragment extends BaseListFragment<GanHuo> {
         return R.layout.item_common;
     }
 
+
+    @Subscribe
+    public void onEvent(SkinChangeEvent event){
+        adapter.notifyDataSetChanged();
+
     @Override
     public void fillValue(ViewHolder holder, GanHuo ganHuo, int position) {
         ImageView mImage = holder.getView(R.id.image);
@@ -90,6 +95,7 @@ public class AllFragment extends BaseListFragment<GanHuo> {
 
             }
         }
+
     }
 
     private void setIconDrawable(TextView view, IIcon icon) {
