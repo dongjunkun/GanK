@@ -3,19 +3,21 @@ package com.yyydjk.gank.widget.refresh.header;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.aspsine.swipetoloadlayout.SwipeRefreshTrigger;
 import com.aspsine.swipetoloadlayout.SwipeTrigger;
 import com.yyydjk.gank.R;
+import com.yyydjk.gank.theme.ColorUiInterface;
 import com.yyydjk.gank.utils.ThemeUtils;
 import com.yyydjk.gank.widget.refresh.drawable.google.RingProgressDrawable;
 
 /**
  * Created by aspsine on 15/9/10.
  */
-public class GoogleRefreshHeaderView extends FrameLayout implements SwipeTrigger, SwipeRefreshTrigger {
+public class GoogleRefreshHeaderView extends FrameLayout implements SwipeTrigger, SwipeRefreshTrigger,ColorUiInterface {
     private ImageView ivRefresh;
 
     private int mTriggerOffset;
@@ -75,5 +77,15 @@ public class GoogleRefreshHeaderView extends FrameLayout implements SwipeTrigger
     @Override
     public void onReset() {
 
+    }
+
+    @Override
+    public View getView() {
+        return this;
+    }
+
+    @Override
+    public void setTheme(Resources.Theme themeId) {
+        ringProgressDrawable.setColors(ThemeUtils.getThemeColor(getContext(), R.attr.colorPrimary));
     }
 }

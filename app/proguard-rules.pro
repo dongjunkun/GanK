@@ -192,6 +192,8 @@
 -keep interface okhttp3.** { *; }
 -dontwarn okhttp3.**
 
+-dontwarn com.squareup.okhttp.**
+
 -dontwarn jp.co.cyberagent.android.gpuimage.**
 -dontwarn net.sourceforge.pinyin4j.**
 

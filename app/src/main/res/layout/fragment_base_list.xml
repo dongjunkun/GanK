@@ -1,0 +1,35 @@
+<com.yyydjk.gank.widget.MultipleStatusView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/multipleStatusView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:emptyView="@layout/custom_empty_view"
+    app:errorView="@layout/custom_error_view"
+    app:loadingView="@layout/custom_loading_view"
+    app:noNetworkView="@layout/custom_no_network_view"
+    tools:context=".base.BaseListFragment">
+
+    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:swipe_style="classic">
+
+        <include
+            android:id="@id/swipe_refresh_header"
+            layout="@layout/layout_google_header"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <include
+            android:id="@id/swipe_load_more_footer"
+            layout="@layout/layout_google_footer"/>
+    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+
+</com.yyydjk.gank.widget.MultipleStatusView>

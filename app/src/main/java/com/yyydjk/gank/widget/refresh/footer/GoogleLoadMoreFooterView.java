@@ -3,19 +3,21 @@ package com.yyydjk.gank.widget.refresh.footer;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.aspsine.swipetoloadlayout.SwipeLoadMoreTrigger;
 import com.aspsine.swipetoloadlayout.SwipeTrigger;
 import com.yyydjk.gank.R;
+import com.yyydjk.gank.theme.ColorUiInterface;
 import com.yyydjk.gank.utils.ThemeUtils;
 import com.yyydjk.gank.widget.refresh.drawable.google.RingProgressDrawable;
 
 /**
  * Created by Aspsine on 2015/11/5.
  */
-public class GoogleLoadMoreFooterView extends FrameLayout implements SwipeTrigger, SwipeLoadMoreTrigger {
+public class GoogleLoadMoreFooterView extends FrameLayout implements SwipeTrigger, SwipeLoadMoreTrigger ,ColorUiInterface {
     private ImageView ivLoadMore;
 
     private int mTriggerOffset;
@@ -74,6 +76,17 @@ public class GoogleLoadMoreFooterView extends FrameLayout implements SwipeTrigge
 
     @Override
     public void onReset() {
+
+    }
+
+    @Override
+    public View getView() {
+        return this;
+    }
+
+    @Override
+    public void setTheme(Resources.Theme themeId) {
+        ringProgressDrawable.setColors(ThemeUtils.getThemeColor(getContext(), R.attr.colorPrimary));
 
     }
 }
