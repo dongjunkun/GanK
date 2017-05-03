@@ -16,6 +16,11 @@
 
 ### 感谢
  - [干货集中营](http://gank.io/)提供的数据
+ 
+ 
+## 打赏鼓励
+如果你觉得我的项目对你有帮助，请扫描下方的二维码随意打赏，您的支持是我最好的动力!
+![](/art/collent_money.png)
 
 ### 关于我
  - 我的简书：[dongjunkun](http://www.jianshu.com/users/f07458c1a8f3/latest_articles)
